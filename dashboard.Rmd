@@ -1,0 +1,145 @@
+---
+title: "New York Weather Dashboard"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(plotly)
+library(p8105.datasets)
+
+data("ny_noaa", package = "p8105.datasets")
+
+weather =
+  ny_noaa |>
+  mutate(
+    tmax = as.numeric(tmax) / 10,
+    tmin = as.numeric(tmin) / 10,
+    prcp = prcp / 10,
+    year = lubridate::year(date),
+    month = lubridate::month(date, label = TRUE),
+    month_date = lubridate::floor_date(date, "month")
+  )
+
+monthly_temp =
+  weather |>
+  filter(!is.na(tmax)) |>
+  group_by(month_date) |>
+  summarise(
+    mean_tmax = mean(tmax),
+    .groups = "drop"
+  )
+
+set.seed(6378)
+
+scatter_data =
+  weather |>
+  filter(!is.na(tmin), !is.na(tmax)) |>
+  slice_sample(n = 5000)
+
+station_month_temp =
+  weather |>
+  filter(!is.na(tmax)) |>
+  group_by(id, year, month) |>
+  summarise(
+    mean_tmax = mean(tmax),
+    n_days = n(),
+    .groups = "drop"
+  ) |>
+  filter(n_days >= 20)
+```
+
+Column
+-------------------------------------
+
+### Monthly Average Daily Maximum Temperature {data-height=550}
+
+```{r temperature-line, echo=FALSE}
+plot_ly(
+  data = monthly_temp,
+  x = ~month_date,
+  y = ~mean_tmax,
+  type = "scatter",
+  mode = "lines",
+  line = list(color = "#2878B5"),
+  hovertemplate = paste(
+    "Month: %{x|%Y-%m}",
+    "<br>Mean maximum temperature: %{y:.1f} °C",
+    "<extra></extra>"
+  )
+) |>
+  layout(
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Mean daily maximum temperature (°C)")
+  )
+```
+
+These monthly averages use all available station-day observations with
+recorded maximum temperatures. Station coverage varies over time, so
+this chart is descriptive rather than an adjusted climate trend.
+
+Column {data-width=500}
+-------------------------------------
+
+### Daily Minimum vs Maximum Temperature (Sample) {data-height=450}
+
+```{r temperature-scatter, echo=FALSE}
+plot_ly(
+  data = scatter_data,
+  x = ~tmin,
+  y = ~tmax,
+  type = "scatter",
+  mode = "markers",
+  text = ~paste("Station:", id, "<br>Date:", date),
+  marker = list(
+    color = "#E68613",
+    size = 5,
+    opacity = 0.35
+  ),
+  hovertemplate = paste(
+    "%{text}",
+    "<br>Minimum: %{x:.1f} °C",
+    "<br>Maximum: %{y:.1f} °C",
+    "<extra></extra>"
+  )
+) |>
+  layout(
+    xaxis = list(title = "Daily minimum temperature (°C)"),
+    yaxis = list(title = "Daily maximum temperature (°C)")
+  )
+```
+
+A fixed random sample of up to 5,000 station-day observations
+with both temperatures recorded is displayed.
+
+### Monthly Distribution of Station Mean Maximum Temperatures {data-height=450}
+
+```{r temperature-boxplot, echo=FALSE}
+plot_ly(
+  data = station_month_temp,
+  x = ~month,
+  y = ~mean_tmax,
+  type = "box",
+  boxpoints = FALSE,
+  color = I("#3A9D78")
+) |>
+  layout(
+    xaxis = list(
+      title = "Month",
+      categoryorder = "array",
+      categoryarray = month.abb
+    ),
+    yaxis = list(
+      title = "Monthly mean Tmax (°C)",
+      automargin = TRUE
+    ),
+    showlegend = FALSE
+  )
+```
+
+Each box summarizes station-year monthly mean daily maximum
+temperatures for that calendar month. Only station-months with
+at least 20 recorded daily maximum temperatures are included.
