@@ -1,0 +1,59 @@
+---
+title: "Resume"
+output: html_document
+---
+
+## Yihui (Chris) Luo
+
+Email: [yl6378@cumc.columbia.edu](mailto:yl6378@cumc.columbia.edu)
+
+## Education
+
+### Columbia University, Mailman School of Public Health
+
+M.S. in Biostatistics  
+September 2026 – June 2028 (Expected)
+
+### New York University
+
+B.A. in Economics and Mathematics  
+January 2024 – May 2026
+
+## Professional Experience
+
+### Ernst & Young / The Parthenon Group
+Intern | Shanghai, China | July – August 2026
+
+- Analyzed data to identify priorities for improving pharmaceutical research and development workflows.
+- Supported an AI-enabled process optimization project.
+
+### Ernst & Young (China) Advisory Limited / The Parthenon Group
+BP Intern, Strategy and Transactions Department | Shanghai, China | July – August 2025
+
+- Supported the launch strategy for a leading pharmaceutical company's new biologic treatment for COPD.
+- Analyzed clinical consensus, regional treatment practices, and cost structures to inform the launch proposal.
+- Partnered with a colleague on three rounds of on-site client visits to gather information for the launch proposal.
+
+### Shanghai VMLY&Rx Co., Ltd.
+Intern | Remote | June – August 2024
+
+- Compared chronic disease management practices in China and the United States.
+- Processed public datasets and healthcare reports for internal AI training data.
+- Analyzed data and created visualizations for pharmaceutical branding campaigns.
+
+### Jiangsu Hansoh Pharmaceutical Group Co., Ltd.
+Project Manager Intern | Lianyungang, China | June – December 2023
+
+- Supported a biologic drug project through progress tracking, data analysis, and coordination across teams.
+- Coordinated communications with international experts and prepared bilingual meeting minutes.
+
+## Publication
+
+Luo, Y. (2025). *Statistical Strategies for Differential Expression
+Analysis of RNA Sequencing Data: Model Comparison and Benchmarking.*
+Theoretical and Natural Science, pp. 136–142.
+
+## Skills
+
+- Programming and analysis: R, Python
+- Software: Excel, Power BI

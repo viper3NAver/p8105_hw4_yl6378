@@ -1,0 +1,16 @@
+---
+title: "Welcome"
+output: html_document
+---
+
+# Hi, I'm Yihui
+
+I am a student at Columbia University, Mailman School of Public Health.
+
+This website introduces my academic background, professional experience,
+and data visualization projects.
+
+## About me
+My background combines quantitative training with internship experience in consulting and the pharmaceutical industry. I have worked on projects involving healthcare data analysis, pharmaceutical research workflows, and data visualization.
+
+I am interested in applying statistical methods to healthcare and business questions. I use R and Python for data analysis, and this website shares my academic background, professional experience, and selected projects.

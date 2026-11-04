@@ -1,0 +1,17 @@
+name: "yihui-website"
+output_dir: "."
+navbar:
+  title: "Yihui Luo"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Resume"
+      href: resume.html
+  right:
+    - text: "GitHub"
+      href: https://github.com/viper3NAver
+    - text: "Email"
+      href: mailto:yl6378@cumc.columbia.edu
+output:
+  html_document:
+    theme: cosmo
